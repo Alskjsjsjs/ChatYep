@@ -32,8 +32,253 @@
             align-self: flex-start;
             border-bottom-left-radius: 0;
         }
+        .file-upload-label {
+            cursor: pointer;
+        }
+        .image-preview {
+            max-width: 100px;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
     </style>
 </head>
+<body class="bg-black text-white h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between p-4">
+        <button class="text-white text-2xl p-2 rounded-full hover:bg-gray-800 transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        <button class="bg-violet-700 text-white font-semibold py-2 px-4 rounded-full text-sm flex items-center shadow-lg hover:bg-violet-600 transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M11 3a1 1 0 100 2h6a1 1 0 100-2h-6zM11 7a1 1 0 100 2h6a1 1 0 100-2h-6zM14 11a1 1 0 100 2h3a1 1 0 100-2h-3zM11 15a1 1 0 100 2h6a1 1 0 100-2h-6zM4 3a1 1 0 00-1 1v1a1 1 0 002 0V4a1 1 0 00-1-1zM4 7a1 1 0 00-1 1v1a1 1 0 002 0V8a1 1 0 00-1-1zM4 11a1 1 0 00-1 1v1a1 1 0 002 0v-1a1 1 0 00-1-1zM4 15a1 1 0 00-1 1v1a1 1 0 002 0v-1a1 1 0 00-1-1z" />
+            </svg>
+            Dapatkan Plus
+        </button>
+        <button class="text-white text-2xl p-2 rounded-full hover:bg-gray-800 transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.418 0h.582m-15.418 0a8 8 0 100 16.012M9 14l2-2m0 0l2 2m-2-2v6" />
+            </svg>
+        </button>
+    </header>
+
+    <!-- Main content / Chat area -->
+    <main class="flex-1 flex flex-col p-4 overflow-hidden">
+        <div id="welcome-message" class="text-center flex-1 flex flex-col items-center justify-center">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-8">Apa yang bisa saya bantu?</h1>
+            <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 w-full max-w-sm sm:max-w-md md:max-w-lg">
+                <button class="bg-gray-800 text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center space-x-2 text-sm sm:text-base hover:bg-gray-700 transition-colors duration-200 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span>Buat gambar</span>
+                </button>
+                <button class="bg-gray-800 text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center space-x-2 text-sm sm:text-base hover:bg-gray-700 transition-colors duration-200 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673a2 2 0 001.218-3.483l-2.486-3.729a1 1 0 00-1.666 0L10.963 13.51a2 2 0 001.218 3.483zm5.823-14.773a.5.5 0 00-.773-.418L10 6.645l-4.713-3.836a.5.5 0 00-.773.418L3 6l7 8 7-8-1.55-.953z" />
+                    </svg>
+                    <span>Diskusikan</span>
+                </button>
+                <button class="bg-gray-800 text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center space-x-2 text-sm sm:text-base hover:bg-gray-700 transition-colors duration-200 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    <span>Bantu tuliskan</span>
+                </button>
+                <button class="bg-gray-800 text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center space-x-2 text-sm sm:text-base hover:bg-gray-700 transition-colors duration-200 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    <span>Lainnya</span>
+                </button>
+            </div>
+        </div>
+        <div id="chat-messages" class="message-container hidden"></div>
+    </main>
+
+    <!-- Input box and send button -->
+    <footer class="p-4 flex flex-col items-center justify-center">
+        <div id="image-preview-container" class="w-full max-w-3xl flex justify-start mb-2 hidden">
+            <img id="image-preview" src="#" alt="Image preview" class="image-preview"/>
+            <button id="clear-image" class="text-white text-sm ml-2">Hapus</button>
+        </div>
+        <div class="relative w-full max-w-3xl flex items-center">
+            <input id="user-input" type="text" placeholder="Tanyakan apa saja" class="w-full bg-gray-900 text-gray-300 rounded-full py-4 pl-12 pr-12 outline-none border border-transparent focus:border-violet-500 transition-colors duration-200">
+            <input type="file" id="image-upload" accept="image/*" class="hidden">
+            <label for="image-upload" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 p-2 rounded-full hover:text-white transition-colors duration-200 file-upload-label">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+            </label>
+            <button id="send-button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 p-2 rounded-full hover:text-white transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+            const chatMessages = document.getElementById('chat-messages');
+            const welcomeMessage = document.getElementById('welcome-message');
+            const imageUpload = document.getElementById('image-upload');
+            const imagePreview = document.getElementById('image-preview');
+            const imagePreviewContainer = document.getElementById('image-preview-container');
+            const clearImageButton = document.getElementById('clear-image');
+
+            // API key from the previous response
+            const API_KEY = 'AIzaSyAadyeVPiw5rq5KUGRBcfKVs0XFQmUw0Kc'; 
+            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+            let chatHistory = [];
+            let uploadedImageBase64 = null;
+
+            // Add user message to the chat, including image
+            function addUserMessage(text, imageBase64) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'bg-blue-600 text-white rounded-xl p-4 max-w-lg user-message';
+                if (text) {
+                    messageDiv.textContent = text;
+                }
+                if (imageBase64) {
+                    const img = document.createElement('img');
+                    img.src = `data:image/png;base64,${imageBase64}`;
+                    img.className = 'max-w-full h-auto rounded-lg mt-2';
+                    messageDiv.appendChild(img);
+                }
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Add AI message to the chat
+            function addAIMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'bg-gray-700 text-gray-200 rounded-xl p-4 max-w-lg ai-message';
+                messageDiv.textContent = message;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Handle image upload preview
+            imageUpload.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        uploadedImageBase64 = e.target.result.split(',')[1];
+                        imagePreview.src = e.target.result;
+                        imagePreviewContainer.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Clear uploaded image
+            clearImageButton.addEventListener('click', () => {
+                imageUpload.value = '';
+                uploadedImageBase64 = null;
+                imagePreview.src = '#';
+                imagePreviewContainer.classList.add('hidden');
+            });
+
+            // Handle sending message
+            async function sendMessage() {
+                const prompt = userInput.value.trim();
+                if (prompt === '' && !uploadedImageBase64) return;
+
+                // Hide the welcome message and show the chat area
+                if (welcomeMessage.classList.contains('flex')) {
+                    welcomeMessage.classList.remove('flex');
+                    welcomeMessage.classList.add('hidden');
+                    chatMessages.classList.remove('hidden');
+                    chatMessages.classList.add('flex');
+                }
+
+                addUserMessage(prompt, uploadedImageBase64);
+                userInput.value = '';
+
+                // Add a temporary loading message
+                const loadingMessage = 'Mengetik...';
+                const loadingDiv = document.createElement('div');
+                loadingDiv.id = 'loading-message';
+                loadingDiv.className = 'bg-gray-700 text-gray-400 rounded-xl p-4 max-w-lg ai-message animate-pulse';
+                loadingDiv.textContent = loadingMessage;
+                chatMessages.appendChild(loadingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                try {
+                    const contents = [];
+                    if (prompt) {
+                        contents.push({ text: prompt });
+                    }
+                    if (uploadedImageBase64) {
+                        contents.push({
+                            inlineData: {
+                                mimeType: "image/png",
+                                data: uploadedImageBase64
+                            }
+                        });
+                    }
+
+                    const payload = {
+                        contents: [{ role: "user", parts: contents }]
+                    };
+
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const aiText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    
+                    // Remove loading message and clear image
+                    loadingDiv.remove();
+                    uploadedImageBase64 = null;
+                    imagePreview.src = '#';
+                    imagePreviewContainer.classList.add('hidden');
+                    imageUpload.value = '';
+
+                    if (aiText) {
+                        addAIMessage(aiText);
+                    } else {
+                        addAIMessage('Maaf, saya tidak dapat menghasilkan respons saat ini.');
+                    }
+
+                } catch (error) {
+                    console.error('Error fetching AI response:', error);
+                    loadingDiv.remove();
+                    addAIMessage('Maaf, terjadi kesalahan saat berkomunikasi dengan server.');
+                }
+            }
+
+            // Listen for click on send button
+            sendButton.addEventListener('click', sendMessage);
+
+            // Listen for "Enter" key press in the input field
+            userInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Prevent new line in input field
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
 <body class="bg-black text-white h-screen flex flex-col">
 
     <!-- Header -->
